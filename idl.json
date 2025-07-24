@@ -1,142 +1,168 @@
 {
-  "address": "9G8NgbN81jTM4DK8PWz4Z64cStVrTXvvf72FQCxxiy6R",
+  "address": "g2yp2MsqoX6eod6tpEvvBGQnYyUnvRjxeBy4kRcPH49",
   "metadata": {
-    "name": "glympse_program",
+    "name": "glympse_program_v2",
     "version": "0.1.0",
     "spec": "0.1.0",
     "description": "Created with Anchor"
   },
   "instructions": [
     {
-      "name": "buy",
-      "discriminator": [102, 6, 61, 18, 1, 218, 235, 234],
+      "name": "assign_credits",
+      "discriminator": [
+        11
+      ],
       "accounts": [
         {
-          "name": "curve",
-          "writable": true,
+          "name": "glympse_pda",
           "pda": {
             "seeds": [
               {
                 "kind": "const",
                 "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "token_reserves",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "curve"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
                 ]
               }
             ]
           }
         },
         {
-          "name": "lottery_fee_account",
-          "writable": true
-        },
-        {
-          "name": "creator_fee_account",
-          "writable": true
-        },
-        {
-          "name": "refferal_fee_account",
+          "name": "credits_pda",
           "writable": true,
-          "optional": true
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  100,
+                  105,
+                  116,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
         },
         {
-          "name": "buyer",
+          "name": "authority",
           "writable": true,
           "signer": true
         },
         {
-          "name": "buyer_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "buyer"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "token_mint",
+          "name": "user",
+          "docs": [
+            "CHECK"
+          ],
           "writable": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
         },
         {
           "name": "system_program",
           "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "AssignCreditsArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "assign_nft_rarity",
+      "discriminator": [
+        10
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_token_mint"
+        },
+        {
+          "name": "collection_mint"
+        },
+        {
+          "name": "nft_asset",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "glympse_pda"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "mpl_core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
         },
         {
           "name": "event_authority",
@@ -145,8 +171,23 @@
               {
                 "kind": "const",
                 "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
                 ]
               }
             ]
@@ -161,20 +202,65 @@
           "name": "args",
           "type": {
             "defined": {
-              "name": "BuyArgs"
+              "name": "AssignNftRarityArgs"
             }
           }
         }
       ]
     },
     {
-      "name": "claim_airdrop",
-      "discriminator": [137, 50, 122, 111, 89, 254, 8, 20],
+      "name": "burn_creator_nft",
+      "discriminator": [
+        7
+      ],
       "accounts": [
         {
-          "name": "user",
-          "writable": true,
-          "signer": true
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_token_mint"
         },
         {
           "name": "user_token_account",
@@ -191,61 +277,56 @@
               },
               {
                 "kind": "account",
-                "path": "token_mint"
+                "path": "creator_token_mint"
               }
             ],
             "program": {
               "kind": "const",
               "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
               ]
             }
           }
         },
         {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "allowlist",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [97, 108, 108, 111, 119, 108, 105, 115, 116]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "allowlist_token_account",
+          "name": "token_vault",
           "writable": true,
           "pda": {
             "seeds": [
               {
                 "kind": "account",
-                "path": "allowlist"
+                "path": "creator_pda"
               },
               {
                 "kind": "account",
@@ -253,296 +334,73 @@
               },
               {
                 "kind": "account",
-                "path": "token_mint"
+                "path": "creator_token_mint"
               }
             ],
             "program": {
               "kind": "const",
               "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
               ]
             }
           }
         },
         {
-          "name": "airdrop_claimed",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97, 105, 114, 100, 114, 111, 112, 95, 99, 108, 97, 105, 109,
-                  101, 100
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              },
-              {
-                "kind": "account",
-                "path": "user"
-              }
-            ]
-          }
+          "name": "user",
+          "signer": true
         },
         {
-          "name": "token_mint",
+          "name": "collection_mint",
+          "writable": true
+        },
+        {
+          "name": "nft_asset",
+          "writable": true
+        },
+        {
+          "name": "fee_receiver",
           "writable": true
         },
         {
           "name": "token_program"
         },
         {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "args",
-          "type": {
-            "defined": {
-              "name": "ClaimAirdropArgs"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "deposit_airdrop",
-      "discriminator": [19, 234, 181, 26, 103, 231, 245, 239],
-      "accounts": [
-        {
-          "name": "creator",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "creator_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "creator"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "allowlist",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [97, 108, 108, 111, 119, 108, 105, 115, 116]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "allowlist_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "allowlist"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
           "name": "system_program",
           "address": "11111111111111111111111111111111"
         },
         {
-          "name": "token_program"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        }
-      ],
-      "args": [
-        {
-          "name": "args",
-          "type": {
-            "defined": {
-              "name": "DepositAirdropArgs"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "freeze_nft",
-      "discriminator": [138, 89, 228, 134, 233, 179, 225, 209],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse_authority",
-          "signer": true
-        },
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "nft_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "payer"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "nft_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "nft_mint",
-          "writable": true
-        },
-        {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "metadata_program",
-          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
+          "name": "mpl_core_program"
         },
         {
           "name": "event_authority",
@@ -551,8 +409,23 @@
               {
                 "kind": "const",
                 "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
                 ]
               }
             ]
@@ -565,171 +438,53 @@
       "args": []
     },
     {
-      "name": "initialize_curve",
-      "discriminator": [170, 84, 186, 253, 131, 149, 95, 213],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "token_reserves",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "curve"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "glympse_authority",
-          "signer": true
-        },
-        {
-          "name": "collection_mint",
-          "writable": true
-        },
-        {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
-          "name": "token_metadata",
-          "docs": ["CHECK :"],
-          "writable": true
-        },
-        {
-          "name": "collection_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "curve"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "collection_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "metadata_program",
-          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        },
-        {
-          "name": "sysvar_instruction"
-        }
+      "name": "close_credits",
+      "discriminator": [
+        13
       ],
-      "args": [
-        {
-          "name": "args",
-          "type": {
-            "defined": {
-              "name": "InitializeCurveArgs"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "initialize_glympse",
-      "discriminator": [101, 217, 32, 180, 90, 131, 249, 1],
       "accounts": [
         {
-          "name": "glympse",
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "credits_pda",
           "writable": true,
           "pda": {
             "seeds": [
               {
                 "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
+                "value": [
+                  99,
+                  114,
+                  101,
+                  100,
+                  105,
+                  116,
+                  115
+                ]
               },
               {
                 "kind": "account",
-                "path": "authority"
+                "path": "user"
               }
             ]
           }
@@ -740,8 +495,431 @@
           "signer": true
         },
         {
+          "name": "user",
+          "docs": [
+            "CHECK"
+          ],
+          "writable": true,
+          "relations": [
+            "credits_pda"
+          ]
+        },
+        {
           "name": "system_program",
           "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "freeze_nft",
+      "discriminator": [
+        8
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true
+        },
+        {
+          "name": "creator_token_mint"
+        },
+        {
+          "name": "collection_mint",
+          "writable": true
+        },
+        {
+          "name": "nft_asset",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "mpl_core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "event_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_creator",
+      "discriminator": [
+        4
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "creator_pda"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "creator_token_mint"
+        },
+        {
+          "name": "creator",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "collection_mint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "mpl_core_program"
+        },
+        {
+          "name": "event_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "collection_name",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "collection_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "common_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "rare_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "epic_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "legendary_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize_glympse",
+      "discriminator": [
+        0
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "event_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "program"
         }
       ],
       "args": [
@@ -756,785 +934,61 @@
       ]
     },
     {
-      "name": "lock_tokens",
-      "discriminator": [136, 11, 32, 232, 161, 117, 54, 211],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "locked_token_reserves",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              },
-              {
-                "kind": "const",
-                "value": [
-                  108, 111, 99, 107, 101, 100, 95, 116, 111, 107, 101, 110, 115
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "payer_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "payer"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "nft_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "payer"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "nft_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "lottery_fee_account",
-          "writable": true
-        },
-        {
-          "name": "creator_fee_account",
-          "writable": true
-        },
-        {
-          "name": "fee_receiver",
-          "writable": true
-        },
-        {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
-          "name": "nft_mint",
-          "writable": true
-        },
-        {
-          "name": "collection_mint",
-          "writable": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "metadata_program",
-          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        },
-        {
-          "name": "event_authority",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "program"
-        }
+      "name": "mint_creator_nft",
+      "discriminator": [
+        6
       ],
-      "args": [
-        {
-          "name": "args",
-          "type": {
-            "defined": {
-              "name": "LockTokensArgs"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "lottery_add_manual",
-      "discriminator": [108, 108, 141, 228, 21, 6, 246, 59],
       "accounts": [
         {
-          "name": "curve",
-          "writable": true,
+          "name": "glympse_pda",
           "pda": {
             "seeds": [
               {
                 "kind": "const",
                 "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "curve.token_address",
-                "account": "Curve"
-              }
-            ]
-          }
-        },
-        {
-          "name": "lottery_fee_account",
-          "writable": true
-        },
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        },
-        {
-          "name": "event_authority",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
                 ]
               }
             ]
           }
         },
         {
-          "name": "program"
-        }
-      ],
-      "args": [
-        {
-          "name": "args",
-          "type": {
-            "defined": {
-              "name": "LotteryAddManualArgs"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "register_lottery_results",
-      "discriminator": [197, 173, 213, 200, 206, 233, 16, 121],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
+          "name": "creator_pda",
           "pda": {
             "seeds": [
               {
                 "kind": "const",
                 "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114
                 ]
               },
               {
                 "kind": "account",
-                "path": "curve.token_address",
-                "account": "Curve"
+                "path": "creator_token_mint"
               }
             ]
           }
         },
         {
-          "name": "lottery_fee_account",
-          "writable": true
+          "name": "creator_token_mint"
         },
         {
-          "name": "authority",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "winner",
-          "writable": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        },
-        {
-          "name": "event_authority",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "program"
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "release_tokens",
-      "discriminator": [94, 13, 10, 16, 170, 196, 230, 42],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "fee_receiver",
-          "writable": true
-        },
-        {
-          "name": "locked_token_reserves",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              },
-              {
-                "kind": "const",
-                "value": [
-                  108, 111, 99, 107, 101, 100, 95, 116, 111, 107, 101, 110, 115
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "owner",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "owner_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "owner"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "owner_nft_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "owner"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "nft_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
-          "name": "nft_mint",
-          "writable": true
-        },
-        {
-          "name": "collection_mint",
-          "writable": true
-        },
-        {
-          "name": "edition",
-          "writable": true
-        },
-        {
-          "name": "metadata",
-          "writable": true
-        },
-        {
-          "name": "collection_metadata",
-          "writable": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "metadata_program",
-          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        },
-        {
-          "name": "sysvar_instructions"
-        },
-        {
-          "name": "event_authority",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "program"
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "sell",
-      "discriminator": [51, 230, 133, 164, 1, 127, 131, 173],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "token_reserves",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "curve"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "lottery_fee_account",
-          "writable": true
-        },
-        {
-          "name": "creator_fee_account",
-          "writable": true
-        },
-        {
-          "name": "refferal_fee_account",
-          "writable": true,
-          "optional": true
-        },
-        {
-          "name": "seller",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "seller_token_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "seller"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        },
-        {
-          "name": "event_authority",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "program"
-        }
-      ],
-      "args": [
-        {
-          "name": "args",
-          "type": {
-            "defined": {
-              "name": "SellArgs"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "set_params",
-      "discriminator": [27, 234, 178, 52, 147, 2, 187, 141],
-      "accounts": [
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "authority",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "args",
-          "type": {
-            "defined": {
-              "name": "SetParamsArgs"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "unfreeze_nft",
-      "discriminator": [20, 55, 97, 59, 251, 167, 117, 32],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse_authority",
-          "signer": true
-        },
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "user"
-        },
-        {
-          "name": "nft_token_account",
+          "name": "user_token_account",
           "writable": true,
           "pda": {
             "seeds": [
@@ -1548,41 +1002,137 @@
               },
               {
                 "kind": "account",
-                "path": "nft_mint"
+                "path": "creator_token_mint"
               }
             ],
             "program": {
               "kind": "const",
               "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
               ]
             }
           }
         },
         {
-          "name": "nft_mint",
+          "name": "token_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "creator_pda"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "collection_mint",
           "writable": true
         },
         {
-          "name": "token_mint",
+          "name": "nft_asset",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fee_receiver",
           "writable": true
+        },
+        {
+          "name": "referral_receiver",
+          "writable": true,
+          "optional": true
         },
         {
           "name": "token_program"
         },
         {
-          "name": "metadata_program",
-          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
           "name": "system_program",
           "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "mpl_core_program"
         },
         {
           "name": "event_authority",
@@ -1591,102 +1141,23 @@
               {
                 "kind": "const",
                 "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "program"
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "update_nft_metadata",
-      "discriminator": [203, 189, 72, 71, 137, 76, 122, 244],
-      "accounts": [
-        {
-          "name": "curve",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ]
-          }
-        },
-        {
-          "name": "glympse",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
-              },
-              {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "payer",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "glympse_authority",
-          "signer": true
-        },
-        {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
-          "name": "nft_mint",
-          "writable": true
-        },
-        {
-          "name": "metadata",
-          "writable": true
-        },
-        {
-          "name": "metadata_program",
-          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        },
-        {
-          "name": "sysvar_instructions"
-        },
-        {
-          "name": "event_authority",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  95, 95, 101, 118, 101, 110, 116, 95, 97, 117, 116, 104, 111,
-                  114, 105, 116, 121
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
                 ]
               }
             ]
@@ -1701,133 +1172,131 @@
           "name": "args",
           "type": {
             "defined": {
-              "name": "UpdateNftMetadataArgs"
+              "name": "MintCreatorNftArgs"
             }
           }
         }
       ]
     },
     {
-      "name": "withdraw_curve",
-      "discriminator": [22, 34, 79, 234, 8, 56, 2, 40],
+      "name": "pause",
+      "discriminator": [
+        2
+      ],
       "accounts": [
         {
-          "name": "curve",
+          "name": "glympse_pda",
           "writable": true,
           "pda": {
             "seeds": [
               {
                 "kind": "const",
                 "value": [
-                  103, 108, 121, 109, 112, 115, 101, 95, 99, 117, 114, 118, 101
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
                 ]
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
               }
             ]
           }
         },
         {
-          "name": "token_reserves",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "account",
-                "path": "curve"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
-              }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
-          }
-        },
-        {
           "name": "authority",
-          "writable": true,
-          "signer": true
+          "signer": true,
+          "relations": [
+            "glympse_pda"
+          ]
         },
         {
-          "name": "authority_token_account",
-          "writable": true,
+          "name": "event_authority",
           "pda": {
             "seeds": [
               {
-                "kind": "account",
-                "path": "authority"
-              },
-              {
-                "kind": "account",
-                "path": "token_program"
-              },
-              {
-                "kind": "account",
-                "path": "token_mint"
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
               }
-            ],
-            "program": {
-              "kind": "const",
-              "value": [
-                140, 151, 37, 143, 78, 36, 137, 241, 187, 61, 16, 41, 20, 142,
-                13, 131, 11, 90, 19, 153, 218, 255, 16, 132, 4, 142, 123, 216,
-                219, 233, 248, 89
-              ]
-            }
+            ]
           }
         },
         {
-          "name": "token_mint",
-          "writable": true
-        },
-        {
-          "name": "token_program"
-        },
-        {
-          "name": "associated_token_program",
-          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
+          "name": "program"
         }
       ],
       "args": []
     },
     {
-      "name": "withdraw_glympse_fees",
-      "discriminator": [39, 2, 92, 33, 31, 218, 142, 187],
+      "name": "redeem_credits",
+      "discriminator": [
+        12
+      ],
       "accounts": [
         {
-          "name": "glympse",
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "credits_pda",
           "writable": true,
           "pda": {
             "seeds": [
               {
                 "kind": "const",
-                "value": [103, 108, 121, 112, 109, 115, 101]
+                "value": [
+                  99,
+                  114,
+                  101,
+                  100,
+                  105,
+                  116,
+                  115
+                ]
               },
               {
-                "kind": "const",
-                "value": [
-                  10, 2, 121, 127, 248, 137, 96, 189, 9, 0, 96, 177, 66, 119,
-                  48, 33, 4, 194, 209, 181, 233, 237, 222, 97, 3, 228, 152, 1,
-                  236, 160, 67, 136
-                ]
+                "kind": "account",
+                "path": "user"
               }
             ]
           }
@@ -1838,621 +1307,808 @@
           "signer": true
         },
         {
+          "name": "user",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "credits_pda"
+          ]
+        },
+        {
           "name": "system_program",
           "address": "11111111111111111111111111111111"
         }
       ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "RedeemCreditsArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "thaw_nft",
+      "discriminator": [
+        9
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true
+        },
+        {
+          "name": "creator_token_mint"
+        },
+        {
+          "name": "collection_mint",
+          "writable": true
+        },
+        {
+          "name": "nft_asset",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "glympse_pda"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "mpl_core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "event_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "program"
+        }
+      ],
       "args": []
+    },
+    {
+      "name": "unpause",
+      "discriminator": [
+        3
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "glympse_pda"
+          ]
+        },
+        {
+          "name": "event_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_creator",
+      "discriminator": [
+        5
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "creator_token_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "creator_token_mint"
+        },
+        {
+          "name": "collection_mint"
+        },
+        {
+          "name": "creator",
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "event_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "common_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "rare_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "epic_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        },
+        {
+          "name": "legendary_uri",
+          "type": {
+            "array": [
+              "u8",
+              100
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_credits",
+      "discriminator": [
+        14
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "credits_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  100,
+                  105,
+                  116,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user",
+          "docs": [
+            "CHECK"
+          ],
+          "writable": true,
+          "relations": [
+            "credits_pda"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "UpdateCreditsArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_glympse",
+      "discriminator": [
+        1
+      ],
+      "accounts": [
+        {
+          "name": "glympse_pda",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  121,
+                  109,
+                  112,
+                  115,
+                  101,
+                  95,
+                  118,
+                  50
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "glympse_pda"
+          ]
+        },
+        {
+          "name": "event_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  95,
+                  95,
+                  101,
+                  118,
+                  101,
+                  110,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "program"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "UpdateGlympseArgs"
+            }
+          }
+        }
+      ]
     }
   ],
   "accounts": [
     {
-      "name": "AirdropClaimed",
-      "discriminator": [207, 15, 28, 248, 146, 63, 38, 85]
+      "name": "Creator",
+      "discriminator": [
+        237,
+        37,
+        233,
+        153,
+        165,
+        132,
+        54,
+        103
+      ]
     },
     {
-      "name": "Allowlist",
-      "discriminator": [188, 77, 210, 114, 13, 206, 20, 47]
+      "name": "Credits",
+      "discriminator": [
+        167,
+        92,
+        156,
+        89,
+        224,
+        222,
+        250,
+        237
+      ]
     },
     {
-      "name": "Curve",
-      "discriminator": [191, 180, 249, 66, 180, 71, 51, 182]
-    },
-    {
-      "name": "Glympse",
-      "discriminator": [232, 108, 144, 45, 216, 236, 168, 35]
+      "name": "GlympseV2",
+      "discriminator": [
+        16,
+        39,
+        94,
+        245,
+        188,
+        196,
+        157,
+        173
+      ]
     }
   ],
   "events": [
     {
-      "name": "BuyEvent",
-      "discriminator": [103, 244, 82, 31, 44, 245, 119, 119]
+      "name": "AssignNftRarityEvent",
+      "discriminator": [
+        116,
+        221,
+        217,
+        85,
+        25,
+        26,
+        21,
+        4
+      ]
     },
     {
-      "name": "CurveCompleteEvent",
-      "discriminator": [110, 145, 30, 183, 83, 45, 10, 160]
+      "name": "BurnCreatorNftEvent",
+      "discriminator": [
+        58,
+        46,
+        139,
+        42,
+        80,
+        23,
+        197,
+        53
+      ]
     },
     {
       "name": "FreezeNftEvent",
-      "discriminator": [67, 48, 195, 84, 157, 205, 20, 224]
+      "discriminator": [
+        67,
+        48,
+        195,
+        84,
+        157,
+        205,
+        20,
+        224
+      ]
     },
     {
-      "name": "LockTokensEvent",
-      "discriminator": [217, 82, 145, 181, 163, 67, 169, 84]
+      "name": "InitializeCreatorEvent",
+      "discriminator": [
+        158,
+        58,
+        62,
+        4,
+        129,
+        3,
+        1,
+        94
+      ]
     },
     {
-      "name": "LotteryAddManualEvent",
-      "discriminator": [76, 92, 89, 18, 51, 205, 93, 176]
+      "name": "InitializeGlympseEvent",
+      "discriminator": [
+        194,
+        154,
+        73,
+        5,
+        247,
+        231,
+        101,
+        224
+      ]
     },
     {
-      "name": "LotteryResultsEvent",
-      "discriminator": [93, 105, 217, 220, 27, 151, 170, 35]
+      "name": "MintCreatorNftEvent",
+      "discriminator": [
+        237,
+        217,
+        173,
+        9,
+        185,
+        110,
+        224,
+        111
+      ]
     },
     {
-      "name": "ReleaseTokensEvent",
-      "discriminator": [8, 139, 88, 180, 18, 129, 27, 99]
+      "name": "PauseEvent",
+      "discriminator": [
+        32,
+        51,
+        61,
+        169,
+        156,
+        104,
+        130,
+        43
+      ]
     },
     {
-      "name": "SellEvent",
-      "discriminator": [62, 47, 55, 10, 165, 3, 220, 42]
+      "name": "UpdateCreatorEvent",
+      "discriminator": [
+        249,
+        248,
+        65,
+        128,
+        104,
+        48,
+        179,
+        181
+      ]
     },
     {
-      "name": "UnfreezeNftEvent",
-      "discriminator": [2, 126, 142, 172, 231, 227, 176, 195]
-    },
-    {
-      "name": "UpdateNftMetadataEvent",
-      "discriminator": [172, 227, 1, 246, 72, 201, 45, 111]
+      "name": "UpdateGlympseEvent",
+      "discriminator": [
+        102,
+        62,
+        186,
+        96,
+        146,
+        22,
+        160,
+        14
+      ]
     }
   ],
   "errors": [
     {
       "code": 6000,
-      "name": "InsufficientSolAmount",
-      "msg": "Insufficient SOL amount provided."
+      "name": "Unauthorized",
+      "msg": "Unauthorized: Only program authority can perform this action"
     },
     {
       "code": 6001,
-      "name": "SlippageExceeded",
-      "msg": "Slippage exceeded the maximum allowed."
+      "name": "ProgramPaused",
+      "msg": "Program is currently paused"
     },
     {
       "code": 6002,
-      "name": "InsufficientTokens",
-      "msg": "Insufficient tokens available for transfer."
+      "name": "ProgramNotPaused",
+      "msg": "Program is not paused"
     },
     {
       "code": 6003,
-      "name": "CurveComplete",
-      "msg": "Curve has already completed."
+      "name": "InvalidCollection",
+      "msg": "Invalid collection provided"
     },
     {
       "code": 6004,
-      "name": "CurveNotComplete",
-      "msg": "Curve has not yet completed."
+      "name": "InvalidFeeReceiver",
+      "msg": "Invalid fee receiver"
     },
     {
       "code": 6005,
-      "name": "WrongAssetAccount",
-      "msg": "Wrong set of remaining account for a Nft Mint."
+      "name": "InvalidReferral",
+      "msg": "Invalid referral account"
     },
     {
       "code": 6006,
-      "name": "MaxHoldingExceeded",
-      "msg": "User already holds the maximum allowed tokens."
+      "name": "ArithmeticOverflow",
+      "msg": "Arithmetic overflow occurred"
     },
     {
       "code": 6007,
-      "name": "ErrorProcessingUri",
-      "msg": "Error processing Uri, incorrect format."
+      "name": "InvalidFeeParameters",
+      "msg": "Invalid fee parameters: cannot exceed 100% (10,000 bps)"
     },
     {
       "code": 6008,
-      "name": "NotWhitelisted",
-      "msg": "User is not whitelisted to claim the airdrop."
+      "name": "SelfReferralNotAllowed",
+      "msg": "Self-referral not allowed"
     },
     {
       "code": 6009,
-      "name": "MissingCreatorCurve",
-      "msg": "Missing required creator curve account for content curve"
+      "name": "InsufficientCredits",
+      "msg": "Insufficient credits"
     },
     {
       "code": 6010,
-      "name": "InvalidCreatorCurve",
-      "msg": "Invalid creator curve - must be a Profile curve"
+      "name": "InvalidAmount",
+      "msg": "Invalid amount: must be greater than 0"
     },
     {
       "code": 6011,
-      "name": "InsufficientFunds",
-      "msg": "Insufficient funds for the operation."
-    },
-    {
-      "code": 6012,
-      "name": "ArithmeticError",
-      "msg": "Arithmetic error occurred."
-    },
-    {
-      "code": 6013,
-      "name": "InvalidCreator",
-      "msg": "Invalid creator - creator's signature required"
-    },
-    {
-      "code": 6014,
-      "name": "CreatorTokenAddressNotProvided",
-      "msg": "Creator token address must be provided for content curves"
-    },
-    {
-      "code": 6015,
-      "name": "TokenAlreadyDelegated",
-      "msg": "Token is already delegated to another account"
+      "name": "CreditsNotZero",
+      "msg": "Cannot close credits account: balance must be 0"
     }
   ],
   "types": [
     {
-      "name": "AirdropClaimed",
-      "type": {
-        "kind": "struct",
-        "fields": []
-      }
-    },
-    {
-      "name": "Allowlist",
+      "name": "AssignCreditsArgs",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "root",
-            "type": {
-              "array": ["u8", 32]
-            }
-          },
-          {
-            "name": "bump",
-            "type": "u8"
-          },
-          {
-            "name": "total_whitelisted",
+            "name": "token_credits",
             "type": "u64"
           },
           {
-            "name": "initial_airdrop_supply",
+            "name": "mint_credits",
             "type": "u64"
           }
         ]
       }
     },
     {
-      "name": "BuyArgs",
+      "name": "AssignNftRarityArgs",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "token_amount",
-            "type": "u64"
-          },
-          {
-            "name": "max_sol_out",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "BuyEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve",
-            "type": "pubkey"
-          },
-          {
-            "name": "buyer",
-            "type": "pubkey"
-          },
-          {
-            "name": "mint",
-            "type": "pubkey"
-          },
-          {
-            "name": "sol_in",
-            "type": "u64"
-          },
-          {
-            "name": "amount_out",
-            "type": "u64"
-          },
-          {
-            "name": "fee_paid",
-            "type": "u64"
-          },
-          {
-            "name": "virtual_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "real_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "real_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "lottery_fee_amount",
-            "type": "u64"
-          },
-          {
-            "name": "creator_fee_amount",
-            "type": "u64"
-          },
-          {
-            "name": "creator",
-            "type": "pubkey"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ClaimAirdropArgs",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "proof",
-            "type": {
-              "vec": {
-                "array": ["u8", 32]
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "Curve",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "virtual_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "migration_supply",
-            "type": "u64"
-          },
-          {
-            "name": "curve_type",
+            "name": "rarity",
             "type": {
               "defined": {
-                "name": "CurveType"
+                "name": "Rarity"
               }
             }
-          },
-          {
-            "name": "creator",
-            "type": "pubkey"
-          },
-          {
-            "name": "uri",
-            "type": "string"
-          },
-          {
-            "name": "token_address",
-            "type": "pubkey"
-          },
-          {
-            "name": "collection_address",
-            "type": "pubkey"
-          },
-          {
-            "name": "complete",
-            "type": "bool"
-          },
-          {
-            "name": "creator_curve",
-            "type": "pubkey"
-          },
-          {
-            "name": "bump",
-            "type": "u8"
           }
         ]
       }
     },
     {
-      "name": "CurveCompleteEvent",
+      "name": "AssignNftRarityEvent",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "curve",
+            "name": "creator_pda",
             "type": "pubkey"
           },
           {
-            "name": "mint",
+            "name": "nft_asset",
             "type": "pubkey"
           },
           {
-            "name": "completed_at",
-            "type": "i64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "CurveType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Profile"
-          },
-          {
-            "name": "Content"
-          }
-        ]
-      }
-    },
-    {
-      "name": "DepositAirdropArgs",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "root",
-            "type": {
-              "array": ["u8", 32]
-            }
-          },
-          {
-            "name": "total_whitelisted",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "FreezeNftEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve",
+            "name": "collection_mint",
             "type": "pubkey"
           },
-          {
-            "name": "payer",
-            "type": "pubkey"
-          },
-          {
-            "name": "nft_mint",
-            "type": "pubkey"
-          },
-          {
-            "name": "timestamp",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Glympse",
-      "type": {
-        "kind": "struct",
-        "fields": [
           {
             "name": "authority",
             "type": "pubkey"
           },
           {
-            "name": "token_supply",
-            "type": "u64"
-          },
-          {
-            "name": "curve_migration_supply",
-            "type": "u64"
-          },
-          {
-            "name": "max_holding_to_buy_bps",
-            "type": "u16"
-          },
-          {
-            "name": "profile_royalties_bps",
-            "type": "u16"
-          },
-          {
-            "name": "content_royalties_bps",
-            "type": "u16"
-          },
-          {
-            "name": "profile_curve_fee_bps",
-            "type": "u16"
-          },
-          {
-            "name": "content_curve_fee_bps",
-            "type": "u16"
-          },
-          {
-            "name": "lottery_fee_share_bps",
-            "type": "u16"
-          },
-          {
-            "name": "creator_fee_share_bps",
-            "type": "u16"
-          },
-          {
-            "name": "initial_profile_curve_virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_content_curve_virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_profile_curve_virtual_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_content_curve_virtual_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "bump",
-            "type": "u8"
-          }
-        ]
-      }
-    },
-    {
-      "name": "InitializeCurveArgs",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve_type",
+            "name": "rarity",
             "type": {
               "defined": {
-                "name": "CurveType"
+                "name": "Rarity"
               }
             }
-          },
-          {
-            "name": "creator_address",
-            "type": "pubkey"
-          },
-          {
-            "name": "creator_token_address",
-            "type": {
-              "option": "pubkey"
-            }
-          },
-          {
-            "name": "name",
-            "type": "string"
           },
           {
             "name": "uri",
             "type": "string"
           },
           {
-            "name": "symbol",
-            "type": "string"
-          }
-        ]
-      }
-    },
-    {
-      "name": "InitializeGlympseArgs",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "token_supply",
-            "type": "u64"
-          },
-          {
-            "name": "curve_migration_supply",
-            "type": "u64"
-          },
-          {
-            "name": "max_holding_to_buy_bps",
-            "type": "u16"
-          },
-          {
-            "name": "profile_royalties_bps",
-            "type": "u16"
-          },
-          {
-            "name": "content_royalties_bps",
-            "type": "u16"
-          },
-          {
-            "name": "profile_curve_fee_bps",
-            "type": "u16"
-          },
-          {
-            "name": "content_curve_fee_bps",
-            "type": "u16"
-          },
-          {
-            "name": "lottery_fee_share_bps",
-            "type": "u16"
-          },
-          {
-            "name": "creator_fee_share_bps",
-            "type": "u16"
-          },
-          {
-            "name": "initial_profile_curve_virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_content_curve_virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_profile_curve_virtual_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_content_curve_virtual_token_reserves",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "LockTokensArgs",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "name": "symbol",
-            "type": "string"
-          }
-        ]
-      }
-    },
-    {
-      "name": "LockTokensEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve",
-            "type": "pubkey"
-          },
-          {
-            "name": "payer",
-            "type": "pubkey"
-          },
-          {
-            "name": "nft_mint",
-            "type": "pubkey"
-          },
-          {
-            "name": "token_mint",
-            "type": "pubkey"
-          },
-          {
-            "name": "amount_locked",
-            "type": "u64"
-          },
-          {
             "name": "timestamp",
             "type": "u64"
           }
@@ -2460,81 +2116,29 @@
       }
     },
     {
-      "name": "LotteryAddManualArgs",
+      "name": "BurnCreatorNftEvent",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "amount",
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator_token_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "nft_asset",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "burn_fee_paid",
             "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "LotteryAddManualEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve",
-            "type": "pubkey"
-          },
-          {
-            "name": "payer",
-            "type": "pubkey"
-          },
-          {
-            "name": "amount",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "LotteryResultsEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve",
-            "type": "pubkey"
-          },
-          {
-            "name": "winner",
-            "type": "pubkey"
-          },
-          {
-            "name": "sol_prize",
-            "type": "u64"
-          },
-          {
-            "name": "timestamp",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ReleaseTokensEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve",
-            "type": "pubkey"
-          },
-          {
-            "name": "owner",
-            "type": "pubkey"
-          },
-          {
-            "name": "nft_mint",
-            "type": "pubkey"
-          },
-          {
-            "name": "token_mint",
-            "type": "pubkey"
           },
           {
             "name": "amount_released",
@@ -2548,156 +2152,130 @@
       }
     },
     {
-      "name": "SellArgs",
+      "name": "Creator",
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "token_amount",
-            "type": "u64"
-          },
-          {
-            "name": "min_sol_out",
-            "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "SellEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "curve",
-            "type": "pubkey"
-          },
-          {
-            "name": "seller",
-            "type": "pubkey"
-          },
-          {
-            "name": "mint",
-            "type": "pubkey"
-          },
-          {
-            "name": "amount_in",
-            "type": "u64"
-          },
-          {
-            "name": "sol_out",
-            "type": "u64"
-          },
-          {
-            "name": "fee_paid",
-            "type": "u64"
-          },
-          {
-            "name": "virtual_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "real_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "real_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "lottery_fee_amount",
-            "type": "u64"
-          },
-          {
-            "name": "creator_fee_amount",
-            "type": "u64"
-          },
           {
             "name": "creator",
             "type": "pubkey"
+          },
+          {
+            "name": "creator_token_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "common_uri",
+            "type": {
+              "array": [
+                "u8",
+                100
+              ]
+            }
+          },
+          {
+            "name": "rare_uri",
+            "type": {
+              "array": [
+                "u8",
+                100
+              ]
+            }
+          },
+          {
+            "name": "epic_uri",
+            "type": {
+              "array": [
+                "u8",
+                100
+              ]
+            }
+          },
+          {
+            "name": "legendary_uri",
+            "type": {
+              "array": [
+                "u8",
+                100
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
           }
         ]
       }
     },
     {
-      "name": "SetParamsArgs",
+      "name": "Credits",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "token_supply",
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_credits",
             "type": "u64"
           },
           {
-            "name": "curve_migration_supply",
+            "name": "mint_credits",
             "type": "u64"
           },
           {
-            "name": "max_holding_to_buy_bps",
-            "type": "u16"
-          },
-          {
-            "name": "profile_royalties_bps",
-            "type": "u16"
-          },
-          {
-            "name": "content_royalties_bps",
-            "type": "u16"
-          },
-          {
-            "name": "profile_curve_fee_bps",
-            "type": "u16"
-          },
-          {
-            "name": "content_curve_fee_bps",
-            "type": "u16"
-          },
-          {
-            "name": "lottery_fee_share_bps",
-            "type": "u16"
-          },
-          {
-            "name": "creator_fee_share_bps",
-            "type": "u16"
-          },
-          {
-            "name": "initial_profile_curve_virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_content_curve_virtual_sol_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_profile_curve_virtual_token_reserves",
-            "type": "u64"
-          },
-          {
-            "name": "initial_content_curve_virtual_token_reserves",
-            "type": "u64"
+            "name": "bump",
+            "type": "u8"
           }
         ]
       }
     },
     {
-      "name": "UnfreezeNftEvent",
+      "name": "CustomRarity",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "curve",
+            "name": "label",
+            "type": {
+              "array": [
+                "u8",
+                100
+              ]
+            }
+          },
+          {
+            "name": "uri",
+            "type": {
+              "array": [
+                "u8",
+                100
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "FreezeNftEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nft_asset",
             "type": "pubkey"
           },
           {
-            "name": "payer",
+            "name": "collection_mint",
             "type": "pubkey"
           },
           {
-            "name": "nft_mint",
+            "name": "authority",
             "type": "pubkey"
           },
           {
@@ -2708,10 +2286,184 @@
       }
     },
     {
-      "name": "UpdateNftMetadataArgs",
+      "name": "GlympseV2",
       "type": {
         "kind": "struct",
         "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "lock_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "burn_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "profile_royalty_bps",
+            "type": "u16"
+          },
+          {
+            "name": "referral_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "creator_nft_lock_token_size",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitializeCreatorEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator_token_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "common_uri",
+            "type": "string"
+          },
+          {
+            "name": "rare_uri",
+            "type": "string"
+          },
+          {
+            "name": "epic_uri",
+            "type": "string"
+          },
+          {
+            "name": "legendary_uri",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitializeGlympseArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "lock_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "burn_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "profile_royalty_bps",
+            "type": "u16"
+          },
+          {
+            "name": "referral_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "creator_nft_lock_token_size",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitializeGlympseEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "glympse_pda",
+            "type": "pubkey"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "lock_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "burn_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "profile_royalty_bps",
+            "type": "u16"
+          },
+          {
+            "name": "referral_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "creator_nft_lock_token_size",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MintCreatorNftArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "referral",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
           {
             "name": "uri",
             "type": "string"
@@ -2720,29 +2472,275 @@
       }
     },
     {
-      "name": "UpdateNftMetadataEvent",
+      "name": "MintCreatorNftEvent",
       "type": {
         "kind": "struct",
         "fields": [
           {
-            "name": "curve",
+            "name": "creator",
             "type": "pubkey"
           },
           {
-            "name": "payer",
+            "name": "creator_token_mint",
             "type": "pubkey"
           },
           {
-            "name": "nft_mint",
+            "name": "nft_asset",
             "type": "pubkey"
           },
           {
-            "name": "token_mint",
+            "name": "collection_mint",
             "type": "pubkey"
           },
           {
-            "name": "new_uri",
+            "name": "lock_fee_paid",
+            "type": "u64"
+          },
+          {
+            "name": "referral_fee_paid",
+            "type": "u64"
+          },
+          {
+            "name": "amount_locked",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PauseEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rarity",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Common"
+          },
+          {
+            "name": "Rare"
+          },
+          {
+            "name": "Epic"
+          },
+          {
+            "name": "Legendary"
+          },
+          {
+            "name": "Custom",
+            "fields": [
+              {
+                "defined": {
+                  "name": "CustomRarity"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "RedeemCreditsArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "redeem_type",
+            "type": {
+              "defined": {
+                "name": "RedeemType"
+              }
+            }
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RedeemType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Token"
+          },
+          {
+            "name": "Mint"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateCreatorEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator_token_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "common_uri",
             "type": "string"
+          },
+          {
+            "name": "rare_uri",
+            "type": "string"
+          },
+          {
+            "name": "epic_uri",
+            "type": "string"
+          },
+          {
+            "name": "legendary_uri",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateCreditsArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "token_credits",
+            "type": "u64"
+          },
+          {
+            "name": "mint_credits",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateGlympseArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "new_authority",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "new_fee_receiver",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "new_lock_fee_lamports",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "new_burn_fee_lamports",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "new_profile_royalty_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "new_referral_fee_bps",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "new_creator_nft_lock_token_size",
+            "type": {
+              "option": "u64"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateGlympseEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "glympse_pda",
+            "type": "pubkey"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "lock_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "burn_fee_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "profile_royalty_bps",
+            "type": "u16"
+          },
+          {
+            "name": "referral_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "creator_nft_lock_token_size",
+            "type": "u64"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
           },
           {
             "name": "timestamp",
